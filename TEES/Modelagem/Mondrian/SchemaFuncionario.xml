@@ -1,0 +1,36 @@
+<Schema name="cubo_funcionario">
+  <Cube name="cubo_funcionario" visible="true" cache="true" enabled="true">
+    <Table name="fato_movimento" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="matricula" name="Funcionario">
+      <Hierarchy visible="true" hasAll="true" primaryKey="matricula">
+        <Table name="dim_funcionario" schema="public">
+        </Table>
+        <Level name="funcao" visible="true" table="dim_funcionario" column="desc_funcao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="area" visible="true" table="dim_funcionario" column="desc_area" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="balconista" visible="true" table="dim_funcionario" column="balconista" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="supervisor" visible="true" table="dim_funcionario" column="supervisor" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="cod_produto" name="Produto">
+      <Hierarchy visible="true" hasAll="true" primaryKey="cod_produto">
+        <Table name="dim_produto" schema="public">
+        </Table>
+        <Level name="descricao" visible="true" table="dim_produto" column="descricao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="rastreavel" visible="true" table="dim_produto" column="rastreavel" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="tipo" visible="true" table="dim_produto" column="tipo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Quantidade" column="quantidade" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="saldo" column="saldo" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
